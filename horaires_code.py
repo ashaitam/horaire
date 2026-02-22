@@ -18,7 +18,8 @@ heure_str = maintenant.strftime("%H:%M")
 st.caption(f"📅 **Aujourd'hui :** {date_str} &nbsp;&nbsp;|&nbsp;&nbsp; ⏰ **Heure locale :** {heure_str}")
 # --- TITRE ET EN-TÊTE ---
 st.title("🕌 Horaires de Prière")
-st.markdown("**- Agglomération Lausannoise**")
+st.markdown("""**- Agglomération Lausannoise**
+- L'horaire est mise à jour chaque jour à minuit""")
 st.divider()
 
 # --- DONNÉES ET LISTES ---
@@ -125,6 +126,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026")
+
 
 
 
