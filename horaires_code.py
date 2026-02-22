@@ -107,10 +107,11 @@ st.divider()
 
 
 st.info("""
-     **À propos** : Cet outil automatisé a été développé par **Haitam SHAIM**, étudiant en microtechnique à l'EPFL, et vous est proposé par [mathsnco.ch](https://mathsnco.ch).
+     **À propos** : Cet outil automatisé a été développé par **Haitam SHAIM**, utilisation à but lucratif interdite.
     
-     **Support & Contact** : En cas de bug, de problème d'affichage ou pour toute question, n'hésitez pas à me[contacter ici](mailto:haitam.shaim@gmail.com).
+     **Support & Contact** : En cas de bug, de problème d'affichage ou pour toute question, n'hésitez pas à me [contacter ici](mailto:haitam.shaim@gmail.com).
     """)
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026")
+
