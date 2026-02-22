@@ -53,7 +53,7 @@ if fajr_compare: # Si la liste n'est pas vide
     
    
     st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
-    st.info(f"🌅 **FAJR (Heure de prière sûre) : {fajr}**")
+    st.info(f"🌅 **FAJR (Heure de prière ) : {fajr}**")
     
     st.divider()
     
