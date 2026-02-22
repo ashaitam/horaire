@@ -126,7 +126,8 @@ st.info("""
     """)
 
 
-st.caption("Développé par **Haitam SHAIM**,2026.")
+st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
