@@ -75,8 +75,11 @@ if fajr_compare: # Si la liste n'est pas vide
     with st.expander("Voir les mosquées scannées"):
         for m in mosques:
             st.write(f"- {m}")
-    with st.expander("Comment sont calculés les horaires ? ") :
-        st.markdown("""🕌 À propos : Comment sont calculés ces horaires ?
+    with st.exxpander("Source des données") :
+        st.markdown("""**Ce n'est en aucun cas nous qui fixons ou calculons ces horaires.** Ils sont strictement définis et mis à jour par les mosquées elles-mêmes. 
+        Notre outil se contente de récupérer leurs horaires officiels (via le système Mawaqit) et d'effectuer une simple comparaison mathématique pour trouver le plus tôt et le plus tard.""")
+    with st.expander("Comment ça marche ? ") :
+        st.markdown("""
 Face à la diversité des méthodes de calcul (degrés d'inclinaison du soleil) utilisées par les différentes mosquées en Suisse et dans l'agglomération lausannoise, il est fréquent d'observer des décalages de plusieurs minutes pour l'heure de l'aube (Fajr) ou de la rupture du jeûne (Maghrib).
 
 Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet outil automatise la règle islamique de la précaution (الاحتياط). L'objectif est de garantir à la fois la validité absolue du jeûne et celle de la prière, en éliminant le moindre doute.
@@ -84,17 +87,19 @@ Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet 
 Le fonctionnement de l'algorithme :
 L'outil interroge automatiquement et en temps réel les horaires officiels des principales mosquées de la région, puis applique un filtrage mathématique strict :
 
-🛑 Pour le jeûne (Imsak) : L'algorithme retient l'horaire le plus tôt (Minimum) parmi toutes les mosquées. S'arrêter de manger à cette heure garantit à 100% que l'aube légale n'est atteinte nulle part, protégeant ainsi la validité du jeûne.
+**Pour le jeûne (Imsak) : L'algorithme retient l'horaire le plus **tôt** (Minimum) parmi toutes les mosquées. S'arrêter de manger à cette heure garantit à 100% que l'aube légale n'est atteinte nulle part, protégeant ainsi la validité du jeûne.
 
-✅ Pour l'entrée des prières : L'algorithme retient l'horaire le plus tardif (Maximum) pour le Fajr, Dhuhr, Asr, Maghrib et Isha. Prier ou rompre son jeûne (Iftar) à cette heure certifie que le temps légal est définitivement entré, peu importe le calendrier que l'on suit habituellement.
+**Pour l'entrée des prières : L'algorithme retient l'horaire le plus **tardif** (Maximum) pour le Fajr, Dhuhr, Asr, Maghrib et Isha. Prier ou rompre son jeûne (Iftar) à cette heure certifie que le temps légal est définitivement entré, peu importe le calendrier que l'on suit habituellement.
 
 Le fondement juridique :
 Cette méthodologie s'appuie sur les recommandations des savants concernant la gestion des divergences de calendriers fiables au sein d'une même ville. L'outil applique littéralement la règle détaillée par la fatwa d'Islamweb.
 
 🔗 Source de référence : Lire la fatwa complète sur Islamweb (n° 418795) - الواجب في الصلاة والصوم عند اختلاف التقاويم : https://www.islamweb.net/ar/fatwa/418795/""")
+   
 else:
 
     st.error("Impossible de récupérer les données aujourd'hui.")
+
 
 
 
