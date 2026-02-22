@@ -6,8 +6,8 @@ import re
 st.set_page_config(page_title="Horaires Lausanne", page_icon="🕌", layout="centered")
 
 # --- TITRE ET EN-TÊTE ---
-st.title("🕌 Horaires de Précaution")
-st.markdown("**Agglomération Lausannoise** - Horaires de prière")
+st.title("🕌 Horaires de Prière")
+st.markdown("**Agglomération Lausannoise**")
 st.divider()
 
 # --- DONNÉES ET LISTES ---
@@ -87,9 +87,9 @@ Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet 
 Le fonctionnement de l'algorithme :
 L'outil interroge automatiquement et en temps réel les horaires officiels des principales mosquées de la région, puis applique un filtrage mathématique strict :
 
-**Pour le jeûne (Imsak) : L'algorithme retient l'horaire le plus **tôt** (Minimum) parmi toutes les mosquées. S'arrêter de manger à cette heure garantit à 100% que l'aube légale n'est atteinte nulle part, protégeant ainsi la validité du jeûne.
+***Pour le jeûne (Imsak) : L'algorithme retient l'horaire le plus **tôt** (Minimum) parmi toutes les mosquées. S'arrêter de manger à cette heure garantit à 100% que l'aube légale n'est atteinte nulle part, protégeant ainsi la validité du jeûne.
 
-**Pour l'entrée des prières : L'algorithme retient l'horaire le plus **tardif** (Maximum) pour le Fajr, Dhuhr, Asr, Maghrib et Isha. Prier ou rompre son jeûne (Iftar) à cette heure certifie que le temps légal est définitivement entré, peu importe le calendrier que l'on suit habituellement.
+***Pour l'entrée des prières : L'algorithme retient l'horaire le plus **tardif** (Maximum) pour le Fajr, Dhuhr, Asr, Maghrib et Isha. Prier ou rompre son jeûne (Iftar) à cette heure certifie que le temps légal est définitivement entré, peu importe le calendrier que l'on suit habituellement.
 
 Le fondement juridique :
 Cette méthodologie s'appuie sur les recommandations des savants concernant la gestion des divergences de calendriers fiables au sein d'une même ville. L'outil applique littéralement la règle détaillée par la fatwa d'Islamweb.
@@ -99,6 +99,7 @@ Cette méthodologie s'appuie sur les recommandations des savants concernant la g
 else:
 
     st.error("Impossible de récupérer les données aujourd'hui.")
+
 
 
 
