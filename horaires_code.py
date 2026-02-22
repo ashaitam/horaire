@@ -7,11 +7,11 @@ st.set_page_config(page_title="Horaires Lausanne", page_icon="🕌", layout="cen
 
 # --- TITRE ET EN-TÊTE ---
 st.title("🕌 Horaires de Prière")
-st.markdown("**Agglomération Lausannoise**")
+st.markdown("**-Agglomération Lausannoise**")
 st.divider()
 
 # --- DONNÉES ET LISTES ---
-mosques = ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
+mosques = ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
 urls = [
     "https://mawaqit.net/fr/association-al-taqwa-lausanne-1018-switzerland-1",
     "https://mawaqit.net/fr/ccml",
@@ -102,6 +102,9 @@ else:
 
 
 
+# --- PIED DE PAGE ---
+st.divider()
+st.caption("Développé par **Haitam SHAIM**  • ashaitam)")
 
 
 
