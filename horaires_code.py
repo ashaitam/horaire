@@ -76,7 +76,7 @@ if fajr_compare: # Si la liste n'est pas vide
         for m in mosques:
             st.write(f"- {m}")
     with st.expander("Comment sont calculés les horaires ? ") :
-        st.write("🕌 À propos : Comment sont calculés ces horaires ?
+        st.markdown("""🕌 À propos : Comment sont calculés ces horaires ?
 Face à la diversité des méthodes de calcul (degrés d'inclinaison du soleil) utilisées par les différentes mosquées en Suisse et dans l'agglomération lausannoise, il est fréquent d'observer des décalages de plusieurs minutes pour l'heure de l'aube (Fajr) ou de la rupture du jeûne (Maghrib).
 
 Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet outil automatise la règle islamique de la précaution (الاحتياط). L'objectif est de garantir à la fois la validité absolue du jeûne et celle de la prière, en éliminant le moindre doute.
@@ -91,9 +91,10 @@ L'outil interroge automatiquement et en temps réel les horaires officiels des p
 Le fondement juridique :
 Cette méthodologie s'appuie sur les recommandations des savants concernant la gestion des divergences de calendriers fiables au sein d'une même ville. L'outil applique littéralement la règle détaillée par la fatwa d'Islamweb.
 
-🔗 Source de référence : Lire la fatwa complète sur Islamweb (n° 418795) - الواجب في الصلاة والصوم عند اختلاف التقاويم : https://www.islamweb.net/ar/fatwa/418795/")
+🔗 Source de référence : Lire la fatwa complète sur Islamweb (n° 418795) - الواجب في الصلاة والصوم عند اختلاف التقاويم : https://www.islamweb.net/ar/fatwa/418795/""")
 else:
 
     st.error("Impossible de récupérer les données aujourd'hui.")
+
 
 
