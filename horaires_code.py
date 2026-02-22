@@ -51,31 +51,30 @@ if fajr_compare: # Si la liste n'est pas vide
 
     # --- AFFICHAGE DE L'INTERFACE ---
     
-    # 1. Mise en évidence de l'Imsak (le plus critique pendant le Ramadan)
+   
     st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
     st.info(f"🌅 **FAJR (Heure de prière sûre) : {fajr}**")
     
     st.divider()
     
-    # 2. Affichage des autres prières sous forme de jolies cartes (Colonnes)
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns(4)
     
     with col1:
         st.metric(label="☀️ Dhuhr", value=duhr)
     with col2:
         st.metric(label="🌤️ Asr", value=asr)
     with col3:
-        # On met le Maghrib en vert car c'est l'Iftar
         st.metric(label="🍲 Maghrib (Iftar)", value=maghrib)
+    with col 4 :
+         st.metric(label="🌙 Isha", value=icha)
         
     st.divider()
-    
-    # 3. La dernière prière
-    st.metric(label="🌙 Isha", value=icha)
+
     
     # --- DÉTAILS TRANPARENTS ---
     with st.expander("Voir les mosquées scannées"):
         for m in mosques:
             st.write(f"- {m}")
 else:
+
     st.error("Impossible de récupérer les données aujourd'hui.")
