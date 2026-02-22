@@ -75,7 +75,7 @@ if fajr_compare: # Si la liste n'est pas vide
     with st.expander("Voir les mosquées scannées"):
         for m in mosques:
             st.write(f"- {m}")
-    with st.exxpander("Source des données") :
+    with st.expander("Source des données") :
         st.markdown("""**Ce n'est en aucun cas nous qui fixons ou calculons ces horaires.** Ils sont strictement définis et mis à jour par les mosquées elles-mêmes. 
         Notre outil se contente de récupérer leurs horaires officiels (via le système Mawaqit) et d'effectuer une simple comparaison mathématique pour trouver le plus tôt et le plus tard.""")
     with st.expander("Comment ça marche ? ") :
@@ -99,6 +99,7 @@ Cette méthodologie s'appuie sur les recommandations des savants concernant la g
 else:
 
     st.error("Impossible de récupérer les données aujourd'hui.")
+
 
 
 
