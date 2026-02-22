@@ -104,7 +104,12 @@ else:
 
 # --- PIED DE PAGE ---
 st.divider()
-st.caption("Développé par **Haitam SHAIM**  • ashaitam)")
+st.caption("Développé par **Haitam SHAIM**  • ashaitam")
 
+st.info("""
+    💡 **À propos** Cet outil automatisé a été développé par **Haitam SHAIM**, étudiant en microtechnique à l'EPFL, et vous est proposé par [mathsnco.ch](https://mathsnco.ch).
+    
+    🛠️ **Support & Contact** En cas de bug, de problème d'affichage ou pour toute question, n'hésitez pas à m'[envoyer un e-mail](mailto:ton.email@exemple.ch).
+    """)
 
 
