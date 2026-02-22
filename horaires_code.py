@@ -1,12 +1,21 @@
 import streamlit as st
 import requests
 import re
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="Horaires Lausanne", page_icon="🕌", layout="centered")
 
 st.warning("⚠️ **Version Bêta** : Cette application est actuellement en phase de test. Veuillez ne pas vous baser exclusivement sur ces résultats pour le moment et vérifier auprès de votre mosquée.")
 
+tz_suisse = ZoneInfo("Europe/Zurich")
+maintenant = datetime.now(tz_suisse)
+date_str = maintenant.strftime("%d.%m.%Y")
+heure_str = maintenant.strftime("%H:%M")
+
+st.caption(f"📅 **Aujourd'hui :** {date_str} &nbsp;&nbsp;|&nbsp;&nbsp; ⏰ **Heure locale :** {heure_str}")
 # --- TITRE ET EN-TÊTE ---
 st.title("🕌 Horaires de Prière")
 st.markdown("**- Agglomération Lausannoise**")
@@ -116,6 +125,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026")
+
 
 
 
