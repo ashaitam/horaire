@@ -57,7 +57,7 @@ if fajr_compare: # Si la liste n'est pas vide
     
     st.divider()
     
-    col1, col2, col3 = st.columns(4)
+    col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.metric(label="☀️ Dhuhr", value=duhr)
@@ -65,7 +65,7 @@ if fajr_compare: # Si la liste n'est pas vide
         st.metric(label="🌤️ Asr", value=asr)
     with col3:
         st.metric(label="🍲 Maghrib (Iftar)", value=maghrib)
-    with col 4 :
+    with col4 :
          st.metric(label="🌙 Isha", value=icha)
         
     st.divider()
@@ -78,3 +78,4 @@ if fajr_compare: # Si la liste n'est pas vide
 else:
 
     st.error("Impossible de récupérer les données aujourd'hui.")
+
