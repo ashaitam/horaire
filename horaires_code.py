@@ -5,7 +5,7 @@ import re
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(page_title="Horaires Lausanne", page_icon="🕌", layout="centered")
 
-st.warninng("⚠️ **Version Bêta** : Cette application est actuellement en phase de test. Veuillez ne pas vous baser exclusivement sur ces résultats pour le moment et vérifier auprès de votre mosquée.")
+st.warning("⚠️ **Version Bêta** : Cette application est actuellement en phase de test. Veuillez ne pas vous baser exclusivement sur ces résultats pour le moment et vérifier auprès de votre mosquée.")
 
 # --- TITRE ET EN-TÊTE ---
 st.title("🕌 Horaires de Prière")
@@ -116,6 +116,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026")
+
 
 
 
