@@ -82,7 +82,7 @@ if fajr_compare: # Si la liste n'est pas vide
         st.markdown("""
 Face à la diversité des méthodes de calcul (degrés d'inclinaison du soleil) utilisées par les différentes mosquées en Suisse et dans l'agglomération lausannoise, il est fréquent d'observer des décalages de plusieurs minutes pour l'heure de l'aube (Fajr) ou de la rupture du jeûne (Maghrib).
 
-Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet outil automatise la règle islamique de la précaution (الاحتياط). L'objectif est de garantir à la fois la validité absolue du jeûne et celle de la prière, en éliminant le moindre doute.
+Pour éviter toute confusion, particulièrement pendant le mois de Ramadan, cet outil automatise la règle de la précaution (الاحتياط). L'objectif est de garantir à la fois la validité absolue du jeûne et celle de la prière, en éliminant le moindre doute.
 
 Le fonctionnement de l'algorithme :
 L'outil interroge automatiquement et en temps réel les horaires officiels des principales mosquées de la région, puis applique un filtrage mathématique strict :
@@ -114,4 +114,5 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026")
+
 
