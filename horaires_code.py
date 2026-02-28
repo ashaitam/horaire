@@ -157,9 +157,10 @@ else:
             prochain_nom = "🌙 Isha"
             h_rest, m_rest = temps_restant(icha)
         else:
-            # Si on a passé l'Isha, le prochain événement est l'Imsak de demain !
-            prochain_nom = "🛑 Imsak (Demain matin)"
-            h_rest, m_rest = temps_restant(imsak, est_demain=True)
+            # Si on a passé l'Isha, on attend la mise à jour de minuit
+            prochain_nom = "🔄 Mise à jour des horaires"
+            # On calcule le temps restant jusqu'à 00:00 demain
+            h_rest, m_rest = temps_restant("00:00", est_demain=True)
 
         # Formatage du texte pour que ce soit joli
         if h_rest > 0:
@@ -181,10 +182,6 @@ else:
         st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
         st.info(f"🌅 **FAJR (Heure de prière) : {fajr}**")
         
-        # ... (le reste de tes colonnes st.metric) ...
-        # --- AFFICHAGE DE L'INTERFACE ---
-        st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
-        st.info(f"🌅 **FAJR (Heure de prière) : {fajr}**")
         
         st.write("") # Petit espace visuel
         
@@ -235,6 +232,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
