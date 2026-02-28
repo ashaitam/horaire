@@ -87,12 +87,20 @@ else:
                 if response.status_code == 200:
                     match = re.search(r'"times":\[(.*?)\]', response.text)
                     if match:
-                        horaires_bruts = match.group(1).replace('"', '').split(',')
-                        fajr_compare.append(horaires_bruts[0])
-                        duhr_compare.append(horaires_bruts[1])
-                        asr_compare.append(horaires_bruts[2])
-                        maghrib_compare.append(horaires_bruts[3])
-                        icha_compare.append(horaires_bruts[4])
+                       # GESTION SÉCURISÉE DES INDEX (5 ou 6 horaires)
+                        if len(horaires_bruts) == 6:
+                            fajr_compare.append(horaires_bruts[0])
+                            # L'index 1 est le Chourouk, on l'ignore
+                            duhr_compare.append(horaires_bruts[2])
+                            asr_compare.append(horaires_bruts[3])
+                            maghrib_compare.append(horaires_bruts[4])
+                            icha_compare.append(horaires_bruts[5])
+                        elif len(horaires_bruts) == 5:
+                            fajr_compare.append(horaires_bruts[0])
+                            duhr_compare.append(horaires_bruts[1])
+                            asr_compare.append(horaires_bruts[2])
+                            maghrib_compare.append(horaires_bruts[3])
+                            icha_compare.append(horaires_bruts[4])
             except Exception:
                 continue
                 
@@ -161,6 +169,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
