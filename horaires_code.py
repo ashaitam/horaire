@@ -116,7 +116,68 @@ else:
         asr = max(asr_compare)
         maghrib = max(maghrib_compare)
         icha = max(icha_compare)
+# --- CALCUL DU PROCHAIN ÉVÉNEMENT ---
+        def temps_restant(heure_cible_str, est_demain=False):
+            # On découpe "14:30" en heures (14) et minutes (30)
+            h, m = map(int, heure_cible_str.split(':'))
+            # On crée une fausse date cible avec l'heure exacte
+            cible = maintenant.replace(hour=h, minute=m, second=0, microsecond=0)
+            
+            # Si l'événement est demain (ex: Imsak après minuit), on ajoute 1 jour
+            if est_demain:
+                cible += timedelta(days=1)
+                
+            # On calcule la différence
+            diff = cible - maintenant
+            heures = diff.seconds // 3600
+            minutes = (diff.seconds % 3600) // 60
+            return heures, minutes
 
+        # On compare l'heure actuelle avec les horaires calculés
+        if heure_str < imsak:
+            prochain_nom = "🛑 Imsak (Arrêt de la nourriture)"
+            h_rest, m_rest = temps_restant(imsak)
+        elif heure_str < fajr:
+            prochain_nom = "🌅 Fajr (Prière de l'aube)"
+            h_rest, m_rest = temps_restant(fajr)
+        elif heure_str < duhr:
+            prochain_nom = "☀️ Dhuhr"
+            h_rest, m_rest = temps_restant(duhr)
+        elif heure_str < asr:
+            prochain_nom = "🌤️ Asr"
+            h_rest, m_rest = temps_restant(asr)
+        elif heure_str < maghrib:
+            prochain_nom = "🍲 Maghrib (Iftar - Rupture du jeûne)"
+            h_rest, m_rest = temps_restant(maghrib)
+        elif heure_str < icha:
+            prochain_nom = "🌙 Isha"
+            h_rest, m_rest = temps_restant(icha)
+        else:
+            # Si on a passé l'Isha, le prochain événement est l'Imsak de demain !
+            prochain_nom = "🛑 Imsak (Demain matin)"
+            h_rest, m_rest = temps_restant(imsak, est_demain=True)
+
+        # Formatage du texte pour que ce soit joli
+        if h_rest > 0:
+            temps_texte = f"**{h_rest}h et {m_rest} min**"
+        else:
+            temps_texte = f"**{m_rest} minutes**"
+
+        # --- AFFICHAGE DE L'INTERFACE ---
+        
+        # 1. On affiche la grande bannière du prochain événement
+        st.success(f"⏳ **Prochain événement :** {prochain_nom} dans {temps_texte}.")
+        
+        # 2. On affiche l'indicateur de santé des données
+        st.caption(f"✅ **Santé des données :** Horaires calculés avec succès sur {mosques_success}/{total_mosques} mosquées.")
+        
+        st.write("") # Petit espace visuel
+        
+        # La suite de ton code d'affichage reste identique :
+        st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
+        st.info(f"🌅 **FAJR (Heure de prière) : {fajr}**")
+        
+        # ... (le reste de tes colonnes st.metric) ...
         # --- AFFICHAGE DE L'INTERFACE ---
         st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
         st.info(f"🌅 **FAJR (Heure de prière) : {fajr}**")
@@ -170,6 +231,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
