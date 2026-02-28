@@ -52,7 +52,7 @@ st.divider()
 # --- BLOCAGE DE L'AFFICHAGE TANT QUE LA VILLE N'EST PAS CHOISIE ---
 if ville_choisie == "-- Sélectionnez une ville --":
     # Message d'accueil quand aucune ville n'est sélectionnée
-    st.info("👆 Veuillez choisir une ville dans le menu ci-dessus pour afficher les horaires de précaution correspondants.")
+    st.info("👆 Veuillez choisir une ville dans le menu ci-dessus pour afficher les horaires de prière correspondants.")
 
 else:
     # TOUT CE QUI EST EN DESSOUS NE S'AFFICHE QUE SI UNE VRAIE VILLE EST CHOISIE
@@ -150,3 +150,4 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
