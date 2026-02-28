@@ -177,8 +177,9 @@ else:
         st.divider()
 
         # --- BOUTON DE PARTAGE ---
+        with st.expender("Partager les horaires"):
         st.write("📲 **Partager les horaires d'aujourd'hui :**")
-        texte_partage = f"""🕌 Horaires de Précaution - {ville_choisie}
+        texte_partage = f"""🕌 Horaires de prière - {ville_choisie}
 📅 {date_str}
 
 🛑 Imsak : {imsak}
@@ -188,7 +189,7 @@ else:
 🍲 Maghrib : {maghrib}
 🌙 Isha : {icha}
 
-🌐 priere.mathsnco.ch"""
+"""
         st.code(texte_partage, language=None)
 
         # --- DÉTAILS TRANSPARENTS ---
@@ -230,3 +231,4 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
