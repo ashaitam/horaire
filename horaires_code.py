@@ -23,6 +23,11 @@ st.markdown("""
 - L'horaire est mise à jour chaque jour à minuit""")
 st.divider()
 
+
+ville_choisie = st.sidebar.selectbox("📍 Choisissez votre ville :", ["Lausanne", "Région Cesson-Melun"])
+
+
+
 # --- DONNÉES ET LISTES ---
 mosques = ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
 urls = [
@@ -127,6 +132,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
