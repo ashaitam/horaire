@@ -33,10 +33,20 @@ villes_data = {
         ]
     },
     "Région Cesson-Melun": {
-        "mosques": ["Mosquée An-Nour (FCMM)", "Mosquée ACDFT DITIB"],
+        "mosques": [
+            "Mosquée An-Nour (Melun)", 
+            "Mosquée ACDFT DITIB (Melun)", 
+            "Mosquée AMCV (Cesson)",
+            "Mosquée Alsalam (Dammarie-Les-Lys)",
+            "Mosquée UMM (Le Mée-sur-Seine)",
+            "Mosquée Ibn Badis (Le Mée-sur-Seine)"],
         "urls": [
             "https://mawaqit.net/fr/annour-melun",
-            "https://mawaqit.net/fr/acdft-melun-ditib-melun-77000-france"
+            "https://mawaqit.net/fr/acdft-melun-ditib-melun-77000-france",
+            "https://mawaqit.net/fr/amcv-cesson-vsd",
+            "https://mawaqit.net/fr/mosquee-alsalam-de-dammarie-les-lys-dammarie-les-lys-77190-france",
+            "https://mawaqit.net/fr/umm-mee",
+            "https://mawaqit.net/fr/mosquee-abdelhamid-ibn-badis-le-mee-sur-seine-77350-france"
         ]
     }
 }
@@ -150,4 +160,5 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
