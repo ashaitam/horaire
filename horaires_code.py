@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 # --- CONFIGURATION DE LA PAGE ---
@@ -22,8 +22,7 @@ st.title("🕌 Horaires de Prière")
 # --- DONNÉES ET LISTES ---
 villes_data = {
     "Lausanne": {
-        "mosques": ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
-,
+        "mosques": ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"],
         "urls": [
             "https://mawaqit.net/fr/association-al-taqwa-lausanne-1018-switzerland-1",
             "https://mawaqit.net/fr/ccml",
@@ -40,7 +39,8 @@ villes_data = {
             "Mosquée AMCV (Cesson)",
             "Mosquée Alsalam (Dammarie-Les-Lys)",
             "Mosquée UMM (Le Mée-sur-Seine)",
-            "Mosquée Ibn Badis (Le Mée-sur-Seine)"],
+            "Mosquée Ibn Badis (Le Mée-sur-Seine)"
+        ],
         "urls": [
             "https://mawaqit.net/fr/annour-melun",
             "https://mawaqit.net/fr/acdft-melun-ditib-melun-77000-france",
@@ -52,22 +52,17 @@ villes_data = {
     }
 }
 
-# --- MENU DÉROULANT CENTRAL (AVEC CHOIX PAR DÉFAUT VIDE) ---
-# On crée une liste d'options qui commence par un texte d'attente
+# --- MENU DÉROULANT CENTRAL ---
 options_menu = ["-- Sélectionnez une ville --"] + list(villes_data.keys())
-
 ville_choisie = st.selectbox("📍 Choisissez votre ville :", options_menu)
 
 st.divider()
 
-# --- BLOCAGE DE L'AFFICHAGE TANT QUE LA VILLE N'EST PAS CHOISIE ---
+# --- BLOCAGE DE L'AFFICHAGE ---
 if ville_choisie == "-- Sélectionnez une ville --":
-    # Message d'accueil quand aucune ville n'est sélectionnée
     st.info("👆 Veuillez choisir une ville dans le menu ci-dessus pour afficher les horaires de prière correspondants.")
 
 else:
-    # TOUT CE QUI EST EN DESSOUS NE S'AFFICHE QUE SI UNE VRAIE VILLE EST CHOISIE
-    
     mosques = villes_data[ville_choisie]["mosques"]
     urls = villes_data[ville_choisie]["urls"]
 
@@ -78,9 +73,8 @@ else:
     fajr_compare, duhr_compare, asr_compare, maghrib_compare, icha_compare = [], [], [], [], []
 
     # --- EXTRACTION DES DONNÉES ---
-    # --- EXTRACTION DES DONNÉES ---
     total_mosques = len(urls)
-    mosques_success = 0  # Notre compteur de succès
+    mosques_success = 0  
     
     with st.spinner("Récupération des horaires en cours..."):
         for url in urls:
@@ -91,7 +85,7 @@ else:
                 if response.status_code == 200:
                     match = re.search(r'"times":\[(.*?)\]', response.text)
                     if match:
-                        mosques_success += 1  # 👈 ON AJOUTE +1 ICI
+                        mosques_success += 1  
                         
                         horaires_bruts = match.group(1).replace('"', '').split(',')
                         if len(horaires_bruts) == 6:
@@ -120,29 +114,25 @@ else:
         asr = max(asr_compare)
         maghrib = max(maghrib_compare)
         icha = max(icha_compare)
-# --- CALCUL DU PROCHAIN ÉVÉNEMENT ---
+
+        # --- CALCUL DU PROCHAIN ÉVÉNEMENT ---
         def temps_restant(heure_cible_str, est_demain=False):
-            # On découpe "14:30" en heures (14) et minutes (30)
             h, m = map(int, heure_cible_str.split(':'))
-            # On crée une fausse date cible avec l'heure exacte
             cible = maintenant.replace(hour=h, minute=m, second=0, microsecond=0)
             
-            # Si l'événement est demain (ex: Imsak après minuit), on ajoute 1 jour
             if est_demain:
                 cible += timedelta(days=1)
                 
-            # On calcule la différence
             diff = cible - maintenant
             heures = diff.seconds // 3600
             minutes = (diff.seconds % 3600) // 60
             return heures, minutes
 
-        # On compare l'heure actuelle avec les horaires calculés
         if heure_str < imsak:
-            prochain_nom = "🛑 Imsak "
+            prochain_nom = "🛑 Imsak"
             h_rest, m_rest = temps_restant(imsak)
         elif heure_str < fajr:
-            prochain_nom = "🌅 Fajr "
+            prochain_nom = "🌅 Fajr"
             h_rest, m_rest = temps_restant(fajr)
         elif heure_str < duhr:
             prochain_nom = "☀️ Dhuhr"
@@ -157,33 +147,26 @@ else:
             prochain_nom = "🌙 Isha"
             h_rest, m_rest = temps_restant(icha)
         else:
-            # Si on a passé l'Isha, on attend la mise à jour de minuit
             prochain_nom = "🔄 Mise à jour des horaires"
-            # On calcule le temps restant jusqu'à 00:00 demain
             h_rest, m_rest = temps_restant("00:00", est_demain=True)
 
-        # Formatage du texte pour que ce soit joli
         if h_rest > 0:
             temps_texte = f"**{h_rest}h et {m_rest} min**"
         else:
             temps_texte = f"**{m_rest} minutes**"
 
         # --- AFFICHAGE DE L'INTERFACE ---
-        
-        # 1. On affiche la grande bannière du prochain événement
         st.success(f"⏳ **Prochain événement :** {prochain_nom} dans {temps_texte}.")
         
-        # 2. On affiche l'indicateur de santé des données
-        st.caption(f"✅ **Santé des données :** Horaires calculés avec succès sur {mosques_success}/{total_mosques} mosquées.")
+        st.caption(f"✅ **Santé des données :** {mosques_success}/{total_mosques} mosquées scannées avec succès.")
+        st.progress(mosques_success / total_mosques)
         
-        st.write("") # Petit espace visuel
+        st.write("") 
         
-        # La suite de ton code d'affichage reste identique :
         st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
         st.info(f"🌅 **FAJR (Heure de prière) : {fajr}**")
         
-        
-        st.write("") # Petit espace visuel
+        st.write("") 
         
         col1, col2, col3, col4 = st.columns(4)
         with col1: st.metric(label="☀️ Dhuhr", value=duhr)
@@ -192,6 +175,21 @@ else:
         with col4: st.metric(label="🌙 Isha", value=icha)
             
         st.divider()
+
+        # --- BOUTON DE PARTAGE ---
+        st.write("📲 **Partager les horaires d'aujourd'hui :**")
+        texte_partage = f"""🕌 Horaires de Précaution - {ville_choisie}
+📅 {date_str}
+
+🛑 Imsak : {imsak}
+🌅 Fajr : {fajr}
+☀️ Dhuhr : {duhr}
+🌤️ Asr : {asr}
+🍲 Maghrib : {maghrib}
+🌙 Isha : {icha}
+
+🌐 priere.mathsnco.ch"""
+        st.code(texte_partage, language=None)
 
         # --- DÉTAILS TRANSPARENTS ---
         with st.expander(f"Voir les mosquées scannées ({ville_choisie})"):
@@ -232,12 +230,3 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
-
-
-
-
-
-
-
-
-
