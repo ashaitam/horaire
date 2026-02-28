@@ -139,10 +139,10 @@ else:
 
         # On compare l'heure actuelle avec les horaires calculés
         if heure_str < imsak:
-            prochain_nom = "🛑 Imsak (Arrêt de la nourriture)"
+            prochain_nom = "🛑 Imsak "
             h_rest, m_rest = temps_restant(imsak)
         elif heure_str < fajr:
-            prochain_nom = "🌅 Fajr (Prière de l'aube)"
+            prochain_nom = "🌅 Fajr "
             h_rest, m_rest = temps_restant(fajr)
         elif heure_str < duhr:
             prochain_nom = "☀️ Dhuhr"
@@ -151,7 +151,7 @@ else:
             prochain_nom = "🌤️ Asr"
             h_rest, m_rest = temps_restant(asr)
         elif heure_str < maghrib:
-            prochain_nom = "🍲 Maghrib (Iftar - Rupture du jeûne)"
+            prochain_nom = "🍲 Maghrib"
             h_rest, m_rest = temps_restant(maghrib)
         elif heure_str < icha:
             prochain_nom = "🌙 Isha"
@@ -232,6 +232,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
