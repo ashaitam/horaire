@@ -78,6 +78,10 @@ else:
     fajr_compare, duhr_compare, asr_compare, maghrib_compare, icha_compare = [], [], [], [], []
 
     # --- EXTRACTION DES DONNÉES ---
+    # --- EXTRACTION DES DONNÉES ---
+    total_mosques = len(urls)
+    mosques_success = 0  # Notre compteur de succès
+    
     with st.spinner("Récupération des horaires en cours..."):
         for url in urls:
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
@@ -87,11 +91,11 @@ else:
                 if response.status_code == 200:
                     match = re.search(r'"times":\[(.*?)\]', response.text)
                     if match:
+                        mosques_success += 1  # 👈 ON AJOUTE +1 ICI
+                        
                         horaires_bruts = match.group(1).replace('"', '').split(',')
-                       # GESTION SÉCURISÉE DES INDEX (5 ou 6 horaires)
                         if len(horaires_bruts) == 6:
                             fajr_compare.append(horaires_bruts[0])
-                            # L'index 1 est le Chourouk, on l'ignore
                             duhr_compare.append(horaires_bruts[2])
                             asr_compare.append(horaires_bruts[3])
                             maghrib_compare.append(horaires_bruts[4])
@@ -231,6 +235,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
