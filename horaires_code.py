@@ -29,21 +29,32 @@ ville_choisie = st.sidebar.selectbox("📍 Choisissez votre ville :", ["Lausanne
 
 
 # --- DONNÉES ET LISTES ---
-mosques = ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
-urls = [
-    "https://mawaqit.net/fr/association-al-taqwa-lausanne-1018-switzerland-1",
-    "https://mawaqit.net/fr/ccml",
-    "https://mawaqit.net/fr/omar-crissier",
-    "https://mawaqit.net/fr/alboukhari-lausanne",
-    "https://mawaqit.net/fr/assala-lausanne",
-    "https://mawaqit.net/fr/alhikma-lausanne"
-]
+villes_data = {
+    "Lausanne": {
+        "mosques": ["Association Al-Taqwa", "CCML", "Mosquée Omar Crissier", "Boukhari", "Assalam", "Al Hikma"],
+        "urls": [
+            "https://mawaqit.net/fr/association-al-taqwa-lausanne-1018-switzerland-1",
+            "https://mawaqit.net/fr/ccml",
+            "https://mawaqit.net/fr/omar-crissier",
+            "https://mawaqit.net/fr/alboukhari-lausanne",
+            "https://mawaqit.net/fr/assala-lausanne",
+            "https://mawaqit.net/fr/alhikma-lausanne"
+        ]
+    },
+    "Région Cesson-Melun": {
+        "mosques": ["Mosquée An-Nour (FCMM)", "Mosquée ACDFT DITIB"],
+        "urls": [
+            "https://mawaqit.net/fr/annour-melun",
+            "https://mawaqit.net/fr/acdft-melun-ditib-melun-77000-france"
+        ]
+    }
+}
 
 fajr_compare, duhr_compare, asr_compare, maghrib_compare, icha_compare = [], [], [], [], []
 
 # --- EXTRACTION DES DONNÉES (avec barre de chargement) ---
 with st.spinner("Récupération des horaires en cours..."):
-    for url in urls:
+    for url in villes_data[ville_choisie]["urls"]:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
         response = requests.get(url, headers=headers)
         
@@ -56,7 +67,8 @@ with st.spinner("Récupération des horaires en cours..."):
                 asr_compare.append(horaires_bruts[2])
                 maghrib_compare.append(horaires_bruts[3])
                 icha_compare.append(horaires_bruts[4])
-    icha_compare.pop(1)
+    if ville_choisie == "Lausanne" :
+        icha_compare.pop(1)
 
 # --- CALCULS DE PRÉCAUTION ---
 if fajr_compare: # Si la liste n'est pas vide
@@ -132,6 +144,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
