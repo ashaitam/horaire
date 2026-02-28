@@ -176,22 +176,7 @@ else:
             
         st.divider()
 
-        # --- BOUTON DE PARTAGE ---
-        with st.expender("Partager les horaires"):
-            st.write("📲 **Partager les horaires d'aujourd'hui :**")
-            texte_partage = f"""🕌 Horaires de prière - {ville_choisie}
-    📅 {date_str}
-    
-    🛑 Imsak : {imsak}
-    🌅 Fajr : {fajr}
-    ☀️ Dhuhr : {duhr}
-    🌤️ Asr : {asr}
-    🍲 Maghrib : {maghrib}
-    🌙 Isha : {icha}
-    
-    """
-        st.code(texte_partage, language=None)
-
+        
         # --- DÉTAILS TRANSPARENTS ---
         with st.expander(f"Voir les mosquées scannées ({ville_choisie})"):
             for m in mosques:
@@ -231,5 +216,6 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
