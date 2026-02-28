@@ -87,6 +87,7 @@ else:
                 if response.status_code == 200:
                     match = re.search(r'"times":\[(.*?)\]', response.text)
                     if match:
+                        horaires_bruts = match.group(1).replace('"', '').split(',')
                        # GESTION SÉCURISÉE DES INDEX (5 ou 6 horaires)
                         if len(horaires_bruts) == 6:
                             fajr_compare.append(horaires_bruts[0])
@@ -169,6 +170,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
