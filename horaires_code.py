@@ -103,7 +103,7 @@ if fajr_compare: # Si la liste n'est pas vide
     
     # --- DÉTAILS TRANPARENTS ---
     with st.expander("Voir les mosquées scannées"):
-        for m in mosques:
+        for m in villes_data[ville_choisie]["mosques"]:
             st.write(f"- {m}")
     with st.expander("Source des données") :
         st.markdown("""**Ce n'est en aucun cas nous qui fixons ou calculons ces horaires.** Ils sont strictement définis et mis à jour par les mosquées elles-mêmes. 
@@ -144,6 +144,7 @@ st.info("""
 
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
