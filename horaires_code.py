@@ -22,7 +22,8 @@ st.title("🕌 Horaires de Prière")
 # --- DONNÉES ET LISTES ---
 villes_data = {
     "Lausanne": {
-        "mosques": ["Association Al-Taqwa", "CCML", "Mosquée Omar Crissier", "Boukhari", "Assalam", "Al Hikma"],
+        "mosques": ["Association Al-Taqwa", "CCML", "Mosquée Omar Ibn Al Khattab- Crissier", "Centre d'études islamiques Boukhari", "Centre Assalam", "Fondation Al Hikma"]
+,
         "urls": [
             "https://mawaqit.net/fr/association-al-taqwa-lausanne-1018-switzerland-1",
             "https://mawaqit.net/fr/ccml",
@@ -160,5 +161,6 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
