@@ -158,9 +158,7 @@ else:
         # --- AFFICHAGE DE L'INTERFACE ---
         st.success(f"⏳ **Prochain événement :** {prochain_nom} dans {temps_texte}.")
         
-        st.caption(f"✅ **Santé des données :** {mosques_success}/{total_mosques} mosquées scannées avec succès.")
-        st.progress(mosques_success / total_mosques)
-        
+       
         st.write("") 
         
         st.error(f"🛑 **IMSAK (Arrêt de la nourriture) : {imsak}**")
@@ -208,7 +206,9 @@ Cette méthodologie s'appuie sur les recommandations des savants concernant la g
 
 # --- PIED DE PAGE ---
 st.divider()
-
+st.caption(f"✅ **Santé des données :** {mosques_success}/{total_mosques} mosquées scannées avec succès.")
+    st.progress(mosques_success / total_mosques)
+st.divider()        
 st.info("""
 **À propos** : Cet outil automatisé a été développé par **Haitam SHAIM**, utilisation à but lucratif interdite.
 
@@ -216,6 +216,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
