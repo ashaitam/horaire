@@ -206,7 +206,7 @@ Cette méthodologie s'appuie sur les recommandations des savants concernant la g
 
 # --- PIED DE PAGE ---
 st.divider()
-if ville_choisie : 
+if ville_choisie == "Lausanne" or ville_choisie== "Région Cesson-Melun" : 
     st.caption(f"✅ **Santé des données :** {mosques_success}/{total_mosques} mosquées scannées avec succès.")
     st.progress(mosques_success / total_mosques)
     
@@ -218,6 +218,7 @@ st.info("""
 """)
 
 st.caption("Développé par **Haitam SHAIM**, 2026.")
+
 
 
 
